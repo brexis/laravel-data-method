@@ -1,0 +1,26 @@
+{
+    "name": "laravel-data-method",
+    "description": "Helper for laravel data-method links",
+    "main": "index.js",
+    "authors": [
+        "Boris KOUMONDJI <brexis2009@yahoo.fr>"
+    ],
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "data-method"
+    ],
+    "homepage": "https://github.com/brexis/laravel-data-method",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap": "^3.3.7",
+        "jquery": "^3.2.1",
+        "sweetalert": "^1.1.3"
+    }
+}
