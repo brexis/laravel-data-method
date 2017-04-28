@@ -2,6 +2,20 @@
 
 Helper for laravel data-method links
 
+## Install
+
+Via npm
+```
+npm install laravel-data-method --save
+```
+
+Via bower
+```
+bower install laravel-data-method --save
+```
+
+## Usage
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
