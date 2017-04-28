@@ -1,7 +1,7 @@
 {
     "name": "laravel-data-method",
     "description": "Helper for laravel data-method links",
-    "main": "index.js",
+    "main": "dist/data-method.js",
     "authors": [
         "Boris KOUMONDJI <brexis2009@yahoo.fr>"
     ],

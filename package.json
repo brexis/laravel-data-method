@@ -2,7 +2,7 @@
     "name": "laravel-data-method",
     "version": "1.0.0",
     "description": "Helper for laravel data-method links",
-    "main": "index.js",
+    "main": "dist/data-method.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
