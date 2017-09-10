@@ -19,43 +19,46 @@ $(function() {
 
     function handleMethod(e) {
         e.preventDefault();
-
         var link = $(this);
-        var httpMethod = link.data('method').toUpperCase();
-        var form;
 
+        dataMethod(link.attr('href'), link.data());
+    }
+
+    function dataMethod(url, options) {
+        var form;
+        var method = options.method || 'POST';
+        method = method.toUpperCase();
         // If the data-method attribute is not PUT or DELETE,
         // then we don't know what to do. Just ignore.
-        if (!['POST', 'PUT', 'DELETE'].includes(httpMethod)) {
+        if (!['POST', 'PUT', 'DELETE'].includes(method)) {
             return;
         }
 
         // Allow user to optionally provide data-confirm="Are you sure?"
-        var message = link.data('confirm');
-        if (message) {
-            confirm(link, function() {
-                form = createForm(link);
+        if (options.confirm) {
+            confirm(options, function() {
+                form = createForm(url, method, options);
                 form.submit();
             });
         } else {
-            form = createForm(link);
+            form = createForm(url, method, options);
             form.submit();
         }
     }
 
-    function createForm(link) {
+    function createForm(url, method, options) {
         var form, params, fields, token;
 
         form = $('<form>', {
             'method': 'POST',
-            'action': link.attr('href')
+            'action': url
         });
 
         token = $('meta[name=csrf-token]').attr('content');
 
-        params = link.data('params') || {};
+        params = options.params || {};
         params._token = token;
-        params._method = link.data('method');
+        params._method = method;
 
         fields = createFields(params);
 
@@ -80,10 +83,10 @@ $(function() {
         return fields;
     }
 
-    function confirm(link, success) {
-        var title = link.data('title');
-        var message = link.data('confirm');
-        var theme = link.data('theme') || 'default';
+    function confirm(options, success) {
+        var title = options.title;
+        var message = options.confirm;
+        var theme = options.theme || 'default';
 
         switch (theme) {
             case 'default':
@@ -122,4 +125,5 @@ $(function() {
     }
 
     $(document).on('click', 'a[data-method]', handleMethod);
+    window.dataMethod = dataMethod;
 });
