@@ -1,6 +1,6 @@
 {
     "name": "laravel-data-method",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "Helper for laravel data-method links",
     "main": "dist/data-method.js",
     "scripts": {
