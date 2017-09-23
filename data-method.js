@@ -28,9 +28,11 @@ $(function() {
         dataMethod(link.attr('href'), link.data());
     }
 
-    function dataMethod(url, options) {
+    function dataMethod(url, options, cb) {
         var method = options.method || 'POST';
         method = method.toUpperCase();
+        cb = cb || function() {};
+
         // If the data-method attribute is not PUT or DELETE,
         // then we don't know what to do. Just ignore.
         if (!['POST', 'PUT', 'DELETE'].includes(method)) {
@@ -40,18 +42,18 @@ $(function() {
         // Allow user to optionally provide data-confirm="Are you sure?"
         if (options.confirm) {
             confirm(options, function() {
-                sendRequest(url, method, options);
+                cb(sendRequest(url, method, options));
             });
         } else {
-            sendRequest(url, method, options);
+            cb(sendRequest(url, method, options));
         }
     }
 
     function sendRequest(url, method, options) {
         if (options.ajax) {
-            sendAjax(url, method, options);
+            return sendAjax(url, method, options);
         } else {
-            createForm(url, method, options).submit();
+            return createForm(url, method, options).submit();
         }
     }
 
