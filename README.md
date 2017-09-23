@@ -5,11 +5,13 @@ Helper for laravel data-method links
 ## Install
 
 Via npm
+
 ```
 $ npm install laravel-data-method --save
 ```
 
 Via bower
+
 ```
 $ bower install laravel-data-method --save
 ```
@@ -51,6 +53,7 @@ $ bower install laravel-data-method --save
     data-method="POST"
     data-params='{"id": 4}'
     data-confirm="Are you sure?">Submit Me</a>
+
     <a
     href="/"
     class="btn btn-primary"
@@ -58,6 +61,7 @@ $ bower install laravel-data-method --save
     data-confirm="Are you sure?"
     data-title="Please confirm this action"
     data-theme="bootstrap">Submit Me with bootstrap theme</a>
+
     <a
     href="/"
     class="btn btn-primary"
@@ -65,6 +69,17 @@ $ bower install laravel-data-method --save
     data-confirm="Are you sure?"
     data-title="Please confirm this action"
     data-theme="sweetalert">Submit Me with Sweet Alert theme</a>
+
+    <a
+    href="javascript:dataMethod('/', {confirm: 'Are you sure?', method: 'POST'})"
+    class="btn btn-primary">Submit with javascript</a>
+
+    <a
+    href="/"
+    class="btn btn-primary"
+    data-method="POST"
+    data-params='{"id": 4}'
+    data-ajax="true">Submit with Ajax</a>
 </body>
 </html>
 ```
