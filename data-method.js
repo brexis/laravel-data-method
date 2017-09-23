@@ -81,6 +81,7 @@ $(function() {
         params = options.params || {};
         params._token = getCSRFToken(options);
 
+        ajaxOptions.url = url;
         ajaxOptions.method = method;
         ajaxOptions.data = params
         $.ajax(ajaxOptions);
