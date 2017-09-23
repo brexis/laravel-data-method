@@ -84,7 +84,7 @@ $(function() {
         ajaxOptions.url = url;
         ajaxOptions.method = method;
         ajaxOptions.data = params
-        $.ajax(ajaxOptions);
+        return $.ajax(ajaxOptions);
     }
 
     function createFields(params) {
