@@ -89,7 +89,7 @@ $ bower install laravel-data-method --save
 ```
 $ git clone https://github.com/brexis/laravel-data-method.git
 $ cd laravel-data-method
-$ npm install gulp-cli -g
+$ npm install -g parcel-bundler
 $ npm install
-$ gulp
+$ npm run build
 ```
