@@ -1,6 +1,6 @@
 $(function() {
     var modalTemplate = [
-        '<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dataMethodModalLabel">',
+        '<div class="modal fade laravel-data-method" tabindex="-1" role="dialog" aria-labelledby="dataMethodModalLabel">',
         '<div class="modal-dialog modal-sm" role="document">',
         '<div class="modal-content">',
         '<div class="modal-header">',
@@ -136,7 +136,8 @@ $(function() {
                         type: "warning",
                         showCancelButton: true,
                         confirmButtonText: "Confirm",
-                        closeOnConfirm: false
+                        closeOnConfirm: false,
+                        customClass: 'laravel-data-method'
                     },
                     function() {
                         success();
