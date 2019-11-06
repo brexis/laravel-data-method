@@ -1,3 +1,4 @@
+/* global $, Swal */
 $(function() {
     var modalTemplate = [
         '<div class="modal fade laravel-data-method" tabindex="-1" role="dialog" aria-labelledby="dataMethodModalLabel">',
@@ -103,14 +104,18 @@ $(function() {
         return fields;
     }
 
-    function confirm(options, success) {
+    function confirm(options, success, cancel) {
         var title = options.title;
         var message = options.confirm;
         var theme = options.theme || 'default';
 
+        if (!cancel) {
+            cancel = function() {}
+        }
+
         switch (theme) {
             case 'default':
-                window.confirm(message) && success();
+                window.confirm(message) ? success() : cancel();
                 break;
             case 'bootstrap':
                 var $modal = $(modalTemplate);
@@ -124,27 +129,57 @@ $(function() {
                     success();
                 });
 
+                $modal.find('[data-dismiss="modal"]').on('click', function() {
+                    cancel();
+                });
+
                 $modal.on('hidden.bs.modal', function() {
                     $modal.remove();
                 });
+
                 break;
             case 'sweetalert':
                 Swal.fire({
                     title: title,
                     text: message,
-                    type: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Confirm",
-                    closeOnConfirm: false,
                     customClass: 'laravel-data-method'
                 }).then(function(result) {
                   if (result.value) {
                     success();
+                  }  else if (result.dismiss === Swal.DismissReason.cancel) {
+                    cancel();
                   }
                 });
                 break;
         }
     }
+
+    // Disable button on submission form
+    function disabledButton($btn) {
+        $btn.prop('disabled', 'disabled');
+    }
+
+    $('form').submit(function(e) {
+        var form = this;
+        e.preventDefault();
+
+        var $submitbutton = $(this).find('[data-disabled-submit]');
+        var confirmMessage = $submitbutton.data('confirm');
+
+        if (confirmMessage) {
+            confirm($submitbutton.data(), function() {
+                disabledButton($submitbutton);
+                form.submit();
+            });
+
+            return false;
+        } else {
+            disabledButton($submitbutton);
+            return true;
+        }
+    });
 
     $(document).on('click', 'a[data-method]', handleMethod);
     window.dataMethod = dataMethod;
