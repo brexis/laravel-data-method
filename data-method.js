@@ -4,8 +4,8 @@ $(function() {
         '<div class="modal-dialog modal-sm" role="document">',
         '<div class="modal-content">',
         '<div class="modal-header">',
+        '<h6 class="modal-title" id="dataMethodModalLabel"></h6>',
         '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
-        '<h4 class="modal-title" id="dataMethodModalLabel"></h4>',
         '</div>',
         '<div class="modal-body"></div>',
         '<div class="modal-footer">',
@@ -65,7 +65,6 @@ $(function() {
             'action': url
         });
 
-
         params = options.params || {};
         params._token = getCSRFToken(options);
         params._method = method;
@@ -78,7 +77,7 @@ $(function() {
 
     function sendAjax(url, method, options) {
         var ajaxOptions = typeof options.ajax === 'object' ? options.ajax : {};
-        params = options.params || {};
+        var params = options.params || {};
         params._token = getCSRFToken(options);
 
         ajaxOptions.url = url;
@@ -130,18 +129,19 @@ $(function() {
                 });
                 break;
             case 'sweetalert':
-                swal({
-                        title: title,
-                        text: message,
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonText: "Confirm",
-                        closeOnConfirm: false,
-                        customClass: 'laravel-data-method'
-                    },
-                    function() {
-                        success();
-                    });
+                Swal.fire({
+                    title: title,
+                    text: message,
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Confirm",
+                    closeOnConfirm: false,
+                    customClass: 'laravel-data-method'
+                }).then(function(result) {
+                  if (result.value) {
+                    success();
+                  }
+                });
                 break;
         }
     }
