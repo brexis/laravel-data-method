@@ -177,8 +177,9 @@ $(function() {
             return false;
         } else {
             disabledButton($submitbutton);
-            return true;
         }
+        
+        return true;
     });
 
     $(document).on('click', 'a[data-method]', handleMethod);
