@@ -178,8 +178,8 @@ $(function() {
         } else {
             disabledButton($submitbutton);
         }
-        
-        return true;
+
+        form.submit();
     });
 
     $(document).on('click', 'a[data-method]', handleMethod);
