@@ -10,8 +10,8 @@ $(function() {
         '</div>',
         '<div class="modal-body"></div>',
         '<div class="modal-footer">',
-        '<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">Cancel</button>',
-        '<button type="button" class="btn btn-primary btn-confirm">Confirm</button>',
+        '<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">{{cancel}}</button>',
+        '<button type="button" class="btn btn-primary btn-confirm">{{ok}}</button>',
         '</div>',
         '</div>',
         '</div>',
@@ -108,6 +108,8 @@ $(function() {
         var title = options.title;
         var message = options.confirm;
         var theme = options.theme || 'default';
+        var okText = options.ok || 'Ok';
+        var cancelText = options.cancel || 'Cancel';
 
         if (!cancel) {
             cancel = function() {}
@@ -118,7 +120,9 @@ $(function() {
                 window.confirm(message) ? success() : cancel();
                 break;
             case 'bootstrap':
-                var $modal = $(modalTemplate);
+                var template = modalTemplate.replace('{{ok}}', okText)
+                                            .replace('{{cancel}}', cancelText)
+                var $modal = $(template);
                 $modal.find('.modal-title').html(title);
                 $modal.find('.modal-body').html(message);
                 $modal.appendTo('body');
@@ -143,7 +147,8 @@ $(function() {
                     title: title,
                     text: message,
                     showCancelButton: true,
-                    confirmButtonText: "Confirm",
+                    cancelButtonText: cancelText,
+                    confirmButtonText: okText,
                     customClass: 'laravel-data-method'
                 }).then(function(result) {
                   if (result.value) {

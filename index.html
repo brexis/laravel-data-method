@@ -12,7 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
         <!-- Scripts -->
         <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -37,6 +37,7 @@
                 data-method="POST"
                 data-confirm="Are you sure?"
                 data-title="Please confirm this action"
+                data-ok="Yes"
                 data-theme="bootstrap">Submit Me with bootstrap theme</a>
 
             <!-- Link form with confirmation with sweetalert2 theme -->
@@ -46,6 +47,8 @@
                 data-method="POST"
                 data-confirm="Are you sure?"
                 data-title="Please confirm this action"
+                data-ok="Yes <i class='fas fa-thumbs-up'></i>"
+                data-cancel="<i class='fas fa-arrow-left'></i> Back"
                 data-theme="sweetalert">Submit Me with Sweet Alert theme</a>
 
             <!-- Link form with confirmation with javascript -->
