@@ -1,6 +1,6 @@
 # laravel-data-method
 
-Helper for laravel data-method links
+This repo provides helpers for form submission in Laravel like link form submission, disabling submit button on form.
 
 ## Install
 
@@ -44,12 +44,15 @@ $ bower install laravel-data-method --save
     </head>
     <body>
         <p>
+            <!-- Link form with confirmation and params -->
             <a
                 href="/"
                 class="btn btn-primary"
                 data-method="POST"
                 data-params='{"id": 4}'
                 data-confirm="Are you sure?">Submit Me</a>
+
+            <!-- Link form with confirmation with bootstrap theme -->
             <a
                 href="/"
                 class="btn btn-primary"
@@ -57,6 +60,8 @@ $ bower install laravel-data-method --save
                 data-confirm="Are you sure?"
                 data-title="Please confirm this action"
                 data-theme="bootstrap">Submit Me with bootstrap theme</a>
+
+            <!-- Link form with confirmation with sweetalert2 theme -->
             <a
                 href="/"
                 class="btn btn-primary"
@@ -64,9 +69,13 @@ $ bower install laravel-data-method --save
                 data-confirm="Are you sure?"
                 data-title="Please confirm this action"
                 data-theme="sweetalert">Submit Me with Sweet Alert theme</a>
+
+            <!-- Link form with confirmation with javascript -->
             <a
                 href="javascript:dataMethod('/', {confirm: 'Are you sure?', method: 'POST'})"
                 class="btn btn-primary">Submit with javascript</a>
+
+            <!-- Link form with confirmation with javascript -->
             <a
                 href="/"
                 class="btn btn-primary"
@@ -75,16 +84,19 @@ $ bower install laravel-data-method --save
                 data-ajax="true">Submit with Ajax</a>
         </p>
 
+        <!-- Desable form submit button on submit event -->
         <form action="" method="post">
             <button class="btn btn-success" type="submit" data-disabled-submit>Disable form button</button>
         </form>
 
+        <!-- Desable form submit button on submit event with confirm message -->
         <form action="" method="post" class="mt-3">
             <button class="btn btn-success"
                 type="submit" data-disabled-submit
                 data-confirm="Are you sure?">Disable form button with confirm</button>
         </form>
 
+        <!-- Desable form submit button on submit event with bootstrap theme -->
         <form action="" method="post" class="mt-3">
             <button class="btn btn-primary"
                 type="submit"
@@ -94,6 +106,7 @@ $ bower install laravel-data-method --save
                 data-theme="bootstrap">Disable form button with confirm Bootstrap</button>
         </form>
 
+        <!-- Desable form submit button on submit event with sweetalert theme -->
         <form action="" method="post" class="mt-3">
             <button class="btn btn-primary"
                 type="submit"

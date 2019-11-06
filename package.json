@@ -13,7 +13,8 @@
     },
     "keywords": [
         "laravel",
-        "data-method"
+        "data-method",
+        "form"
     ],
     "author": "Boris KOUMONDJI <brexis2009@yahoo.fr>",
     "license": "MIT",
