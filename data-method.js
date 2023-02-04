@@ -139,7 +139,7 @@ $(function() {
                 break;
             case 'bootstrap':
                 var template = modalBootstrap4Template.replace('{{ok}}', okText)
-                                            .replace('{{cancel}}', cancelText)
+                    .replace('{{cancel}}', cancelText)
                 var $modal = $(template);
                 $modal.find('.modal-title').html(title);
                 $modal.find('.modal-body').html(message);
