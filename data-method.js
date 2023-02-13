@@ -1,6 +1,6 @@
 /* global $, Swal */
 $(function() {
-    var modalTemplate = [
+    var modalBootstrap4Template = [
         '<div class="modal fade laravel-data-method" tabindex="-1" role="dialog" aria-labelledby="dataMethodModalLabel">',
         '<div class="modal-dialog modal-sm" role="document">',
         '<div class="modal-content">',
@@ -11,6 +11,24 @@ $(function() {
         '<div class="modal-body"></div>',
         '<div class="modal-footer">',
         '<button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">{{cancel}}</button>',
+        '<button type="button" class="btn btn-primary btn-confirm">{{ok}}</button>',
+        '</div>',
+        '</div>',
+        '</div>',
+        '</div>'
+    ].join('');
+
+    var modalBootstrap5Template = [
+        '<div class="modal fade laravel-data-method" tabindex="-1" role="dialog" aria-labelledby="dataMethodModalLabel">',
+        '<div class="modal-dialog modal-sm" role="document">',
+        '<div class="modal-content">',
+        '<div class="modal-header">',
+        '<h6 class="modal-title" id="dataMethodModalLabel"></h6>',
+        '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>',
+        '</div>',
+        '<div class="modal-body"></div>',
+        '<div class="modal-footer">',
+        '<button type="button" class="btn btn-light btn-cancel" data-bs-dismiss="modal">{{cancel}}</button>',
         '<button type="button" class="btn btn-primary btn-confirm">{{ok}}</button>',
         '</div>',
         '</div>',
@@ -120,8 +138,8 @@ $(function() {
                 window.confirm(message) ? success() : cancel();
                 break;
             case 'bootstrap':
-                var template = modalTemplate.replace('{{ok}}', okText)
-                                            .replace('{{cancel}}', cancelText)
+                var template = modalBootstrap4Template.replace('{{ok}}', okText)
+                    .replace('{{cancel}}', cancelText)
                 var $modal = $(template);
                 $modal.find('.modal-title').html(title);
                 $modal.find('.modal-body').html(message);
@@ -134,6 +152,53 @@ $(function() {
                 });
 
                 $modal.find('[data-dismiss="modal"]').on('click', function() {
+                    cancel();
+                });
+
+                $modal.on('hidden.bs.modal', function() {
+                    $modal.remove();
+                });
+
+                break;
+
+            case 'bootstrap-4':
+                var template = modalBootstrap4Template.replace('{{ok}}', okText)
+                    .replace('{{cancel}}', cancelText)
+                var $modal = $(template);
+                $modal.find('.modal-title').html(title);
+                $modal.find('.modal-body').html(message);
+                $modal.appendTo('body');
+                $modal.modal('show');
+
+                $modal.find('.btn-confirm').on('click', function() {
+                    $modal.modal('hide');
+                    success();
+                });
+
+                $modal.find('[data-dismiss="modal"]').on('click', function() {
+                    cancel();
+                });
+
+                $modal.on('hidden.bs.modal', function() {
+                    $modal.remove();
+                });
+
+                break;
+            case 'bootstrap-5':
+                var template = modalBootstrap5Template.replace('{{ok}}', okText)
+                    .replace('{{cancel}}', cancelText)
+                var $modal = $(template);
+                $modal.find('.modal-title').html(title);
+                $modal.find('.modal-body').html(message);
+                $modal.appendTo('body');
+                $modal.modal('show');
+
+                $modal.find('.btn-confirm').on('click', function() {
+                    $modal.modal('hide');
+                    success();
+                });
+
+                $modal.find('[data-bs-dismiss="modal"]').on('click', function() {
                     cancel();
                 });
 
